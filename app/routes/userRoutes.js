@@ -4,7 +4,7 @@
 var User       = require('./../models/user');
 
 module.exports = function (app) {
-    app.post('/addUser',function (req, res) {
+    app.post('/api/addUser',function (req, res) {
         var name = req.body.name || req.query.name;
         console.log("adding user with name->",name);
         if(!name)
@@ -34,7 +34,7 @@ module.exports = function (app) {
             }
         });
     });
-    app.get('/findUser',function (req, res) {
+    app.get('/api/findUser',function (req, res) {
         var name = req.query.name;
         console.log("finding user with name->",name);
         if(!name)
@@ -53,4 +53,16 @@ module.exports = function (app) {
             }
         });
     });
+
+    app.get('/api/allUsers',function(req,res){
+        User.find(function(err,allUsers){
+            if(err){
+                console.error("error in fetching all users",allUsers);
+                return res.status(500).send({success:false,message:"error in fetching all users",error:err});
+            }
+            else{
+                return res.json({success:true,allUsers:allUsers});
+            }
+        })
+    })
 };

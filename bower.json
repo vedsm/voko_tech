@@ -1,0 +1,11 @@
+{
+  "name": "voko_tech",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "animate.css": "latest",
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0"
+  }
+}

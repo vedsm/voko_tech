@@ -41,14 +41,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(express.static(__dirname + '/app/views'));
+// set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public'));
 //app.set('view engine', 'ejs'); // set up ejs for templates
 
 //
 
 
 // routes ======================================================================
-require('./app/routes/login.js')(app); // load our routes and pass in our app
+require('./app/routes/userRoutes.js')(app); // load our routes and pass in our app
 
 // launch ======================================================================
 app.listen(port);
@@ -59,6 +60,11 @@ app.get('/health', function(req, res) {
     res.json({success: "true", message: "Yayy"});
 });
 
-app.get('/dummyPage', function(req,res) {
-    res.sendFile('app/views/testHTML.html', {root: __dirname});
-})
+// frontend routes =========================================================
+// route to handle all angular requests
+app.get('*', function(req, res) {
+    res.sendFile('public/index.html',{root: __dirname}); // load our public/index.html file, {root: __dirname} is provided for absolute path
+});
+
+// expose app
+exports = module.exports = app;
