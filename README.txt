@@ -12,7 +12,8 @@ node server.js;
 
     - app                    <!-- the majority of nodejs code -->
     ----- models/            <!-- the schemas of database -->
-    ----- routes/            <!-- the schemas of database -->
+    ----- routes/            <!-- the  api routes -->
+    ----- utils/             <!-- the utility functions -->
     - config
         ----- database.js    <!-- the mongodb path -->
     - node_modules           <!-- created by npm install -->
