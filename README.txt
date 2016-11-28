@@ -1,21 +1,22 @@
 # Description
 
-This is the repository for voko backend.
+This is the repository for voko backend. It uses MEAN stack
 
 # How to run
 
 npm install;
-node server.js
+bower install;
+node server.js;
 
 # Project structure
 
-    - app                 <!-- the majority of nodejs code -->
-    ----- models/         <!-- the schemas of database -->
-    ----- routes/         <!-- the schemas of database -->
+    - app                    <!-- the majority of nodejs code -->
+    ----- models/            <!-- the schemas of database -->
+    ----- routes/            <!-- the schemas of database -->
     - config
-        ----- database.js <!-- the mongodb path -->
-    - node_modules        <!-- created by npm install -->
-    - public              <!-- all frontend and angular stuff -->
+        ----- database.js    <!-- the mongodb path -->
+    - node_modules           <!-- created by npm install -->
+    - public                 <!-- all frontend and angular stuff -->
     ----- css
     ----- js
     ---------- controllers   <!-- angular controllers -->
@@ -24,10 +25,8 @@ node server.js
     ---------- appRoutes.js  <!-- angular routes -->
     ----- img
     ----- libs               <!-- created by bower install -->
-    ----- views
-    ---------- home.html
-    ---------- nerd.html
-    ---------- geek.html
+    ----- views              <!-- angular html pages -->
+    ---------- home.html     <!-- the main landing page -->
     ----- index.html
     - .bowerrc               <!-- tells bower where to put files (public/libs) -->
     - bower.json             <!-- tells bower which files we need -->
