@@ -6,7 +6,7 @@
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
-var app      = express();
+var app      = express(); 
 var port     = process.env.PORT || 9000;
 var mongoose = require('mongoose');
 
@@ -19,7 +19,7 @@ var configDB = require('./config/database.js');
 // configuration ===============================================================
 mongoose.connect(configDB.db); // connect to our database
 
-//for CORS
+//for CORS :- cross origin resource sharing //Security Reasons
 app.all('*',function(req, res, next) {
     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Origin', "*");
@@ -50,7 +50,7 @@ app.use(express.static(__dirname + '/public'));
 
 // routes ======================================================================
 require('./app/routes/userRoutes.js')(app); // load our routes and pass in our app
-
+require('./app/routes/productRoutes.js')(app);
 // launch ======================================================================
 app.listen(port);
 console.log('The magic happens on port ' + port);
@@ -64,6 +64,7 @@ app.get('/health', function(req, res) {
 // route to handle all angular requests
 app.get('*', function(req, res) {
     res.sendFile('public/index.html',{root: __dirname}); // load our public/index.html file, {root: __dirname} is provided for absolute path
+
 });
 
 // expose app

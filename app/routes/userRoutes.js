@@ -5,16 +5,29 @@ var User       = require('./../models/user');
 
 module.exports = function (app) {
     app.post('/api/addUser',function (req, res) {
-        var name = req.body.name || req.query.name;
-        console.log("adding user with name->",name);
-        if(!name)
-            return res.status(403).send({success: false, message: 'no name provided'});
+        var firstname = req.body.firstname || req.query.firstname;
+        console.log("adding user with firstname->",firstname);
+        if(!firstname)
+            return res.status(403).send({success: false, message: 'no firstname provided'});
 
-        User.findOne({'name': name},function(err,user){
+        var lastname = req.body.lastname || req.query.lastname;
+        console.log("adding user with lastname->",lastname);
+        if(!lastname)
+            return res.status(403).send({success: false, message: 'no lastname provided'});
+
+        var email = req.body.email || req.query.email;
+        console.log("adding user with email->",email);
+        if(!email)
+            return res.status(403).send({success: false, message: 'no email provided'});
+
+
+        User.findOne({'firstname': firstname,'lastname': lastname,'email':email },function(err,user){
             if(err)console.error(err);
             else if(!user){
                 var newUser =new User();
-                newUser.name=name;
+                newUser.firstname=firstname;
+                newUser.lastname=lastname;
+                newUser.email=email;
                 newUser.save(function(err, savedUser) {
                     if (err) {
                         console.error(err);
@@ -25,22 +38,25 @@ module.exports = function (app) {
                         return res.status(500).send({success:false,message:"error in saving user"});
                     }
                     else {
-                        res.json({success:true,message:"user created with name->"+name,user:savedUser});
+                        res.json({success:true,message:"user created with firstname->"+firstname,user:savedUser});
+                        res.json({success:true,message:"user created with lastname->"+lastname,user:savedUser});
+                        res.json({success:true,message:"user created with email->"+email,user:savedUser});
                     }
                 });
             }
             else{
-                res.json({success:true,message:"previous user with same name found",user:user});
+                res.json({success:true,message:"previous user with same firstname found",user:user});
             }
         });
     });
-    app.get('/api/findUser',function (req, res) {
-        var name = req.query.name;
-        console.log("finding user with name->",name);
-        if(!name)
-            return res.status(403).send({success: false, message: 'no name provided'});
 
-        User.findOne({'name': name},function(err,user){
+    app.get('/api/findUser',function (req, res) {
+        var firstname = req.query.firstname;
+        console.log("finding user with firstname->",firstname);
+        if(!firstname)
+            return res.status(403).send({success: false, message: 'no firstname provided'});
+
+        User.findOne({'firstname': firstname},function(err,user){
             if(err){
                 console.error(err);
                 return res.status(500).send({success:false,message:"error",error:err})
@@ -53,6 +69,8 @@ module.exports = function (app) {
             }
         });
     });
+
+
 
     app.get('/api/allUsers',function(req,res){
         User.find(function(err,allUsers){

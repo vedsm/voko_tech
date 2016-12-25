@@ -15,7 +15,13 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         .when('/users', {
             templateUrl: 'views/user.html',
             controller: 'UserController'
-        });
+        })
+
+        // products page that will use the ProductController
+         .when('/products', {
+            templateUrl: 'views/products.html',
+            controller: 'ProductController'
+        })
 
     $locationProvider.html5Mode(true);
 

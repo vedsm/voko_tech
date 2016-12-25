@@ -1,0 +1,51 @@
+<div class="jumbotron text-center">
+    <h1>Nerds and Proud</h1>
+
+    <p>{{ tagline }}</p> //
+</div>
+<br>
+<p>allProducts:<pre>{{products | json}}</pre></p>
+
+<form method="post" action="/api/addProduct">
+			<div>
+		      <label for="productID">
+		      	<span class="required">ID: *</span> 
+		      	<input type="text" id="productID" name="productID" value="" placeholder="Enter product ID" required="required" tabindex="1" autofocus="autofocus" />
+		      </label> 
+			</div>
+			<div>
+		      <label for="productName">
+		      	<span class="required">Name: *</span> 
+		      	<input type="text" id="productName" name="productName" value="" placeholder="Enter product Name" required="required" tabindex="2" autofocus="autofocus" />
+		      </label> 
+			</div>
+			<div>
+		      <label for="rentPerMonth">
+		      	<span class="required">RentPerMonth: *</span> 
+		      	<input type="text" id="rentPerMonth" name="rentPerMonth" value="" placeholder="Enter Rent" required="required" tabindex="3" autofocus="autofocus" />
+		      </label> 
+			</div>
+			<div>		
+			<div>
+		      <label for="imageURL">
+		      	<span class="required">ImageURL: *</span> 
+		      	<input type="text" id="imageURL" name="imageURL" value="" placeholder="Image URL" required="required" tabindex="4" autofocus="autofocus" />
+		      </label> 
+			</div>
+			<div>	           
+		      <button type="submit" id="submit" >SEND</button> 
+			</div>
+		   </form>
+<br>
+
+<form method="get" action="/api/findProduct">
+			<div>
+		      <label for="name">
+		      	<span class="required">Name: *</span> 
+		      	<input type="text" id="name" name="name" value="" placeholder="Enter Name to Search" required="required" tabindex="1" autofocus="autofocus" />
+		      </label> 
+			</div>
+			<div>		           
+		      <button type="submit" id="submit" >SEND</button> 
+			</div>
+		   </form>
